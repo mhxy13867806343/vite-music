@@ -6,11 +6,11 @@ export default function (){
     const popLeftShow=ref(false)//弹窗显示
    const popPosition=ref('left')//弹窗位置
     const popDom=reactive({
-        width:'85%',
-        height:'90%',
+        width:'80%',
+        height:'120%',
     })
     const overlayStyle=ref({
-        backgroundColor:'rgba(0,0,0,0.71)',
+        backgroundColor:'rgba(0,0,0,0.4)',
     })//自定义遮罩层样式
     const closeOnPopstate=ref(true)//是否在页面回退时自动关闭
     return {

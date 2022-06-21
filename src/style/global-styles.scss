@@ -1,3 +1,15 @@
+$height100:100%;
+$positionRelative:relative;
+$positionAbsolute:absolute;
+$transparent:transparent;
+@mixin -webkit-tab-height-color(){
+  //去除外框
+  outline: 0;
+  //去除聚焦时的阴影
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: $transparent;
+}
+
 html {
   //设置通用字体
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
@@ -16,11 +28,7 @@ ul, ol, li, dl, dt, dd, tr, td, fieldset, input {
 }
 
 a,input,textarea,select,button{
-  //去除外框
-  outline: 0;
-  //去除聚焦时的阴影
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
+  @include -webkit-tab-height-color();
 }
 
 a{
@@ -28,9 +36,7 @@ a{
   text-decoration: none;
 }
 a:active{
-  outline: 0;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-tap-highlight-color: transparent;
+  @include -webkit-tab-height-color();
 }
 
 table {
@@ -87,8 +93,8 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
   }
 }
 .image-content{
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 /* 全局公共样式  */
@@ -110,11 +116,11 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 
 /* 扩展可点击区域  */
 .extend-clickable-area{
-  position: relative;
+  position: $positionRelative;
 }
 .extend-clickable-area::before{
   content:'';
-  position:absolute;
+  position:$positionAbsolute;
   top:-10px;
   bottom:-10px;
   left:-10px;
@@ -134,14 +140,14 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 }
 /* css 十字形  */
 .icon-cross{
-  position:relative;
+  position:$positionRelative;
   width:36px;
   height: 36px;
   overflow: hidden;
 }
 .icon-cross::before{
   content: "";
-  position: absolute;
+  position: $positionAbsolute;
   top:15px;
   width:100%;
   height: 6px;
@@ -149,9 +155,24 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
 }
 .icon-cross::after{
   content: "";
-  position: absolute;
+  position: $positionAbsolute;
   left:15px;
   width:6px;
-  height: 100%;
+  height: $height100;
   background-color: #5AA2E7;
+}
+
+::v-deep .van-image__img{
+  border-radius:50%
+}
+
+.bgs-color{
+  background-color: #e7e3e3;
+  height:$height100;
+}
+
+::v-deep .van-button{
+  &:after{
+    border:$transparent
+  }
 }

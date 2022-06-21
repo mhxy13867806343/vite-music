@@ -13,17 +13,25 @@
 	</van-nav-bar>
 	<left-popup :show="popLeftShow" @click-overlay="popLeftShow=false">
 		<template #pop>
-			<div class="login-popup p-0.5">
-				<div class="login-popup-wrapper flex items-center	">
-					<van-image round
+			<div class="login-popup p-1.5	bgs-color">
+				<div class="login-popup-wrapper flex items-center	pb-3 	">
+					<van-image
 										 class="image-content"
-										 fit="contain"
 										 src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 					/>
 					<div class="login-popup-wrapper-text font-black	pl-0.5	text-tiny">立即登录
 					<span class="arrow-right align-middle"></span>
 					</div>
 				</div>
+				<van-cell-group class="py-2.5	" v-for="(item,index) in navTabList" :key="index">
+					<van-cell :title="a.title" is-link class="items-center"
+					 v-for="(a,b) in item.children" :key="b">
+						<template #icon>
+							<van-icon :name="a.icon" :size="a.size"/>
+						</template>
+					</van-cell>
+				</van-cell-group>
+				<van-button type="danger" plain  hairline size="large">退出</van-button>
 			</div>
 		</template>
 	</left-popup>
@@ -31,21 +39,27 @@
 </template>
 
 <script setup>
+import {navTabList} from '@/utils/configs'
 import LeftPopup from "./LeftPopup.vue";
 import useVariable from "@/hooks/useVariable";
 const {popLeftShow}=useVariable()
-import {ref,onMounted} from 'vue'
-const scrollHeight=ref(0)
+import useDomClick from "@/hooks/useDomClick";
+const {documentQuerySelector,scrollHeight}=useDomClick()
+import {ref, onMounted, reactive} from 'vue'
 onMounted(()=>{
-	const navFixed=document.querySelector('.van-nav-bar--fixed')
-	scrollHeight.value=+navFixed.clientHeight||44
+	documentQuerySelector()
 })
 const onClickNav=()=>{
 	popLeftShow.value=true
-	console.log(popLeftShow.value)
 }
 </script>
 
 <style scoped lang="scss">
 .login-popup{}
+::v-deep .van-cell__title{
+	padding-left: 4px;
+}
+::v-deep .van-cell-group{
+	background:transparent;
+}
 </style>
