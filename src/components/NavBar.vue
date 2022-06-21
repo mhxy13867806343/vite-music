@@ -13,14 +13,16 @@
 	</van-nav-bar>
 	<left-popup :show="popLeftShow" @click-overlay="popLeftShow=false">
 		<template #pop>
-			<div class="login-popup">
-				<div class="login-popup-wrapper">
+			<div class="login-popup p-0.5">
+				<div class="login-popup-wrapper flex items-center	">
 					<van-image round
 										 class="image-content"
 										 fit="contain"
 										 src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
 					/>
-					<div class="login-popup-wrapper-text">立即登录></div>
+					<div class="login-popup-wrapper-text font-black	pl-0.5	text-tiny">立即登录
+					<span class="arrow-right align-middle"></span>
+					</div>
 				</div>
 			</div>
 		</template>
