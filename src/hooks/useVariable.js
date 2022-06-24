@@ -13,6 +13,7 @@ export default function (){
         backgroundColor:'rgba(0,0,0,0.4)',
     })//自定义遮罩层样式
     const closeOnPopstate=ref(true)//是否在页面回退时自动关闭
+
     return {
         popDom,
         popLeftShow,
@@ -21,6 +22,6 @@ export default function (){
         placeholderValue,
         searchDisabled,
         overlayStyle,
-        closeOnPopstate
+        closeOnPopstate,
     }
 }

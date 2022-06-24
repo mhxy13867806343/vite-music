@@ -41,6 +41,8 @@ import useVariable from '@/hooks/useVariable'
 const {searchValue,placeholderValue,searchDisabled}=useVariable()
 import useEventClick from "@/hooks/useEventClick";
 const {onSearchClick}=useEventClick()
+import useHomeReQue from "@/hooks/useHomeReQue";
+const {bannerList}=useHomeReQue()
 </script>
 
 <style scoped lang="scss">

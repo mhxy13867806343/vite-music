@@ -1,4 +1,5 @@
 import {ref} from 'vue'
+import storage from 'good-storage'
 
 //弹窗导航
 export const navTabList=ref([
@@ -58,3 +59,16 @@ export const tabList=ref([//初始化tabList
         url:'/cloud',
     }
 ])
+
+export function tcParams(){
+    let cookie = ''
+    if(storage.get('user')?.cookie){
+        cookie =storage.get('user')?.cookie
+    } else {
+        cookie = ''
+    }
+    return {
+        cookie,
+        timestamp:Date.now()
+    }
+}

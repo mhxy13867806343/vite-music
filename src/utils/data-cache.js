@@ -87,7 +87,7 @@ export function delUser(key){
 
 }
 //清空所有
-export default function clearAll(){
+export  function clearAll(){
     delUser('token')
     delUser('user')
     delUser('cookie')

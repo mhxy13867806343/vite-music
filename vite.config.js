@@ -8,6 +8,7 @@ import globalStyle from '@originjs/vite-plugin-global-style'
 // https://vitejs.dev/config/
 export default ({mode})=>{
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+  const env = loadEnv(mode, process.cwd());
   return defineConfig({
     // optimizeDeps:{
     //   exclude:[],
@@ -21,7 +22,7 @@ export default ({mode})=>{
         '@':path.resolve(__dirname,'src'),
       }
     },
-    base:'./',
+    base:loadEnv(mode, process.cwd()).VITE_APP_ENV,
     publicDir:'public',
     plugins: [
         vue({
@@ -55,6 +56,9 @@ export default ({mode})=>{
         },
       }
     },
+    define:{
+      'process.env':{}
+    },
     server:{
       hmr:true,
       host:'localhost',
@@ -63,11 +67,11 @@ export default ({mode})=>{
       strictPort: false,
       https: false,
       proxy:{
-        // '/api':{
-        //   target:import.meta.env.VITE_BASE_URL,
-        //   changeOrigin: true,
-        //   rewrite: path => path.replace(/^\/api/, '')
-        // }
+        '/api':{
+          target:env.VITE_APP_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\/api/, '')
+        }
       }
     }
   })

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import {saveSearch,getSearch,delAllSearch,saveUser,getUser,clearAll} from '@/utils/cache'
-export const useStore  = defineStore('main',{
+import {saveSearch,getSearch,delAllSearch,saveUser,getUser,clearAll} from '@/utils/data-cache'
+export const useTestStore  = defineStore('main',{
     state:()=> {
         return {
             token: getUser('token')||'',//用户token
