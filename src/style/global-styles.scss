@@ -1,4 +1,5 @@
 $height100:100%;
+$width100:100%;
 $positionRelative:relative;
 $positionAbsolute:absolute;
 $transparent:transparent;
@@ -175,4 +176,19 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
   &:after{
     border:$transparent
   }
+}
+.swiper-images{
+  width: $width100;
+  height: 160px;
+}
+::v-deep .van-haptics-feedback{
+  height: $height100;
+
+}
+::v-deep .van-ellipsis{
+  height: $height100;
+}
+::v-deep .van-swipe__indicator--active{
+  width: 12px;
+  border-radius:1px;
 }
