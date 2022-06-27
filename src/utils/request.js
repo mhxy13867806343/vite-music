@@ -53,7 +53,7 @@ service.interceptors.request.use(
       if(config.cancelToken){
           stopRepeatRequest(reqList,config.url,c1,`${config.url}请求被中断`)
       }
-    config.headers['set-cookie']= getCookie || ''
+    config.headers['set-cookie']= getCookie.value || ''
     return config
   },
   error => {
@@ -73,6 +73,7 @@ service.interceptors.response.use(
             Toast.fail(message||msg)
             return
         }
+        const {code:code1}=data
           return Promise.resolve(data)
     }
   },
