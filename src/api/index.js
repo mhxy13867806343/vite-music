@@ -14,3 +14,9 @@ export const getPersonalized = params =>request({
     url:'/personalized',
     params
 })
+
+//国家编码列表
+export const getCountries = params =>request({
+    url:'/countries/code/list',
+    params
+})

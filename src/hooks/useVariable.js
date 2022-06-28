@@ -13,7 +13,20 @@ export default function (){
         backgroundColor:'rgba(0,0,0,0.4)',
     })//自定义遮罩层样式
     const closeOnPopstate=ref(true)//是否在页面回退时自动关闭
-
+    //用户相关
+    const sendOpt=reactive({
+        count: 60,
+        timer: null,
+        codeText: '获取验证码',
+        isSend: false,
+        counts:0//按钮是否点击大于1了
+    })
+    const userData=reactive({
+        captcha:'',//验证码
+        phone:'',//手机号码
+        password:'',//密码
+        countrycode:'86',//国家码
+    })
     return {
         popDom,
         popLeftShow,
@@ -23,5 +36,6 @@ export default function (){
         searchDisabled,
         overlayStyle,
         closeOnPopstate,
+        sendOpt,userData
     }
 }
