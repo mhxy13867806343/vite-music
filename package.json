@@ -10,6 +10,7 @@
     "dev:prod": "vite --mode dev-prod"
   },
   "dependencies": {
+    "@nutui/nutui": "^3.1.22",
     "autoprefixer": "^9",
     "axios": "^0.27.2",
     "better-scroll": "^2.4.2",
@@ -34,10 +35,10 @@
     "@babel/plugin-proposal-optional-chaining": "^7.17.12",
     "@originjs/vite-plugin-global-style": "^1.0.2",
     "@vitejs/plugin-vue": "^2.3.3",
+    "events": "^3.3.0",
     "postcss-px-to-viewport": "^1.1.1",
     "unplugin-vue-components": "^0.19.6",
-    "vite": "^2.9.9",
-    "events": "^3.3.0",
-    "util": "^0.12.4"
+    "util": "^0.12.4",
+    "vite": "^2.9.9"
   }
 }

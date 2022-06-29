@@ -15,7 +15,7 @@
 				label="手机号码"
 				maxlength="11"
 				type="number"
-				placeholder="请输入手机号码"
+				placeholder="手机号码"
 		>
 			<template #left-icon>
 				<div class="text-base" @click="$router.push(`/countries?code=${userData.countrycode}`)">
@@ -34,7 +34,7 @@
 							 center
 							 clearable
 							 maxlength="6"
-							 placeholder="请输入6位手机验证码"
+							 placeholder="6位手机验证码"
 		/>
 	</van-cell-group>
 	<div  class="my-10">
