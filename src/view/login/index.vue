@@ -3,6 +3,7 @@
 			left-text="手机号登录"
 			left-arrow
 			fixed placeholder
+			:z-index="11111111"
 			@click-left="$router.back()"
 	/>
 <div class="mt-11">
@@ -17,7 +18,7 @@
 				placeholder="请输入手机号码"
 		>
 			<template #left-icon>
-				<div class="text-base" @click="countrycodeShow=true">
+				<div class="text-base" @click="$router.push(`/countries?code=${userData.countrycode}`)">
 					+{{userData.countrycode}}
 					<i class="iconfont icon-xiangxiajiantoushixin"></i>
 				</div>
@@ -43,70 +44,26 @@
 			登录
 		</van-button>
 	</div>
-	<van-popup
-			v-model:show="countrycodeShow"
-			closeable round
-			:lazy-render="false"
-			:style="{ height: '100%',width:'100%' }"
-	>
-		<van-overlay :show="isSkeleton" @click="isSkeleton = false" />
-		<van-skeleton title avatar :row="countrycodeList.length" :loading="isSkeleton">
-			<van-index-bar :index-list="countrycodeList"
-			>
-				<van-index-anchor
-						:index="item.label"
-													v-for="(item,index) in countrycodeList" :key="index"
-				>{{item.label}}
-					<div v-for="(a1,b1) in item.countryList" :key="b1">
-						<van-cell
-								:title="a1.zh"
-						></van-cell>
-					</div>
-
-				</van-index-anchor>
-
-			</van-index-bar>
-		</van-skeleton>
-
-
-	</van-popup>
 </div>
 </template>
 
 <script setup>
+import {useRouter,useRoute} from 'vue-router'
 import {ref,onMounted,computed} from 'vue'
 import useVariable from '@/hooks/useVariable'
 const {sendOpt,userData}=useVariable()
 import {clikPhone} from '@/utils/variable'
 import { Toast } from 'vant';
-import {getCountries} from '@/api/index'
 import useEventClick from "@/hooks/useEventClick";
 const {sendBtn60}=useEventClick()
-const countrycodeList=ref([])//国家码
-const countrycodeShow=ref(false)//国家码展示列表
-const isSkeleton=ref(false)//数据是否存在
+const route=useRoute()
 onMounted(()=>{
-	getCountriesList()
+	if(route.query.code){
+		userData.countrycode=route.query.code
+	}
 })
-const countrycodeListCom=computed(()=>{
 
-})
-//国家编码列表
-const getCountriesList=()=>{
-	isSkeleton.value=true
-	getCountries().then(res=>{
-		const {code,data}=res
-		if(code===200){
-			countrycodeList.value=data
-			console.log(countrycodeList.value,222)
-			if(countrycodeList.value.length){
-				isSkeleton.value=false
-			}
-		}
-	}).catch(e=>{
 
-	})
-}
 const onClickSend=()=>{
 	if(!userData.phone.length){
 		Toast({

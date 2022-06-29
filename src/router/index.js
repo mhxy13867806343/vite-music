@@ -21,7 +21,7 @@ const routes = [
     },
     {path:'/login',component:()=>import("../view/login/index.vue")},
     {path:'/cpwd',component:()=>import("../view/changePassword/index.vue")},
-
+    {path:'/countries',component:()=>import("../view/countries/index.vue")},
 ];
 
 const router = createRouter({

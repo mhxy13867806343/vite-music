@@ -6,16 +6,24 @@ export const useTestStore  = defineStore('main',{
             token: getUser('token')||'',//用户token
             cookie:getUser('cookie')||'',//用户cookie
             user: getUser('user'),//用户信息
-            searchList: getSearch()||[]//搜索历史列表
+            searchList: getSearch()||[],//搜索历史列表
+            countrycode:getUser('countrycode')||[],//国家码
         }
     },
     getters: {
         getToken: state => state.token,
         getCookie: state => state.cookie,
         getUser: state => state.user,
-        getSearchList: state => state.searchList
+        getSearchList: state => state.searchList,
+        getCountrycode: state => state.countrycode,
     },
     actions:{
+        //保存国家码列表
+        saveCountrycode(list){
+            this.countrycode = list ||[]
+            console.log(this.countrycode,11112222)
+            saveUser('countrycode',list)
+        },
         //保存基本信息
         async onLogin({token,user,cookie}={token:'',user:{},cookie:''}) {
             this.user = user;

@@ -192,3 +192,23 @@ input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webki
   width: 12px;
   border-radius:1px;
 }
+::v-deep  .van-nav-bar--fixed{
+  z-index: 120;
+}
+.right-top{
+  position: fixed;
+  top:25%;
+  right:8px;
+  background-color: rgba(0,0,0,.3);
+  border-radius: 10px;
+  .right-li{
+    padding:4px;
+    span{
+      font-size:10px;
+    }
+  }
+}
+.index-header-26{
+  position: fixed;
+  z-index: 0;
+}

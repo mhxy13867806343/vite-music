@@ -1,6 +1,6 @@
 <template>
 	<div class="container" :style="{paddingBottom:(scrollHeight+10)+'px'}">
-		<router-view/>
+		<router-view :key="$route.fullPath"/>
 	</div>
 	<van-tabbar v-model="active" @change="tabChange" >
 		<van-tabbar-item v-for="(item,index) in tabList" :key="index">
