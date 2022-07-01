@@ -21,7 +21,6 @@ export const useTestStore  = defineStore('main',{
         //保存国家码列表
         saveCountrycode(list){
             this.countrycode = list ||[]
-            console.log(this.countrycode,11112222)
             saveUser('countrycode',list)
         },
         //保存基本信息
@@ -39,9 +38,9 @@ export const useTestStore  = defineStore('main',{
             delAllSearch()
         },
         //保存搜索记录
-        saveSearchList(list){
-            this.searchList = list;
-            saveSearch(list)
+        saveSearchList(data){
+            this.searchList.push(data);
+            saveSearch( this.searchList)
         },
         //退出后清空
         clearLogin(){
