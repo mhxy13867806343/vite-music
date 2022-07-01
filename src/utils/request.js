@@ -50,9 +50,9 @@ service.interceptors.request.use(
   config => {
       let c1=''
       config.cancelToken=new axios.CancelToken(c=>c1=c)
-      if(config.cancelToken){
-          stopRepeatRequest(reqList,config.url,c1,`${config.url}请求被中断`)
-      }
+      // if(config.cancelToken){
+      //     stopRepeatRequest(reqList,config.url,c1,`${config.url}请求被中断`)
+      // }
     config.headers['set-cookie']= getCookie.value || ''
     return config
   },
@@ -89,9 +89,9 @@ service.interceptors.response.use(
       },1200)
     } else{
       Toast.fail(data.message||data.msg)
-        setTimeout(()=>{
-            allowRequest(reqList,error.config.url)
-        },2000)
+        // setTimeout(()=>{
+        //     allowRequest(reqList,error.config.url)
+        // },2000)
     }
     return Promise.reject(error.response)
   }

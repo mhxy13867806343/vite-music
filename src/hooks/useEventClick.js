@@ -5,18 +5,18 @@ export default function (){
     //搜索相关内容
     const onSearchClick=(value)=>{
 
-        // if(value){
-        //     router.push({
-        //         path:'/search',
-        //         query:{
-        //             s:value
-        //         }
-        //     })
-        // }else{
-        //     router.push({
-        //         path:'/search',
-        //     })
-        // }
+        if(value){
+            router.push({
+                path:'/search',
+                query:{
+                    search:value
+                }
+            })
+        }else{
+            router.push({
+                path:'/search',
+            })
+        }
 
     }
     //倒计时

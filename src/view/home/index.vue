@@ -1,10 +1,11 @@
 <template>
 	<NavBar class="icon-title-search">
 		<template #icon-title>
-			<van-search v-model="searchValue"
+			<div class="text-search relative" 	@click="onSearchClick(placeholderValue.realkeyword)">
+				<van-search v-model="searchValue"
 
-									@click-input="onSearchClick"
-									:placeholder="placeholderValue"  :disabled="searchDisabled"/>
+										:placeholder="placeholderValue.realkeyword"  :disabled="!searchDisabled"/>
+			</div>
 		</template>
 	</NavBar>
 	<div v-if="bannerList.length">
@@ -35,6 +36,23 @@
 
 	<nav></nav>
 	<main>
+		<div class="cell-group cell-group-just p-1.5">
+			<div class="flex items-center justify-between	">
+				<div class="text-2xl font-extrabold">歌手榜</div>
+				<div class="text-base">更多 <span class="icon-cross"></span></div>
+			</div>
+			<ul class="gnewsong flex a-scroll">
+				<li class="mvFirstList text-center" v-for="(item,index) in artistList" :key="index">
+					<div class="name-center-mv">
+						<div class="relative mv-center">
+							<img :src="item.picUrl"  class="new-cover">
+						</div>
+						<span class="font-name">{{item.name}}</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+
 		<div class="cell-group cell-group-just p-1.5">
 			<div class="flex items-center justify-between	">
 				<div class="text-2xl font-extrabold">推荐新音乐</div>
@@ -76,27 +94,39 @@
 		<div class="cell-group cell-group-just p-1.5">
 			<div class="flex items-center justify-between	">
 				<div class="text-2xl font-extrabold">推荐歌单</div>
-				<div class="text-base">更多 <span class="icon-cross"></span></div>
 			</div>
+			<ul class="gnewsong flex a-scroll">
+				<li class="mvFirstList text-center" v-for="(item,index) in personalized" :key="index">
+					<div class="name-center-mv">
+						<div class="relative mv-center">
+							<img :src="item.picUrl"  class="new-cover">
+							<span class="absolute	item-playCount">{{playCount1[index].value+playCount1[index].unit}}</span>
+						</div>
+						<span class="font-name">{{item.name}}</span>
+					</div>
+				</li>
+			</ul>
 		</div>
 
 	</main>
 </template>
 
 <script setup>
-import {numberFormat} from '@/utils/filterNum'
-import {computed} from 'vue'
+import useCount from "@/hooks/useCount";
+const {getCountPlayCount}=useCount();
+import {computed,toRef,onMounted} from 'vue'
 import useVariable from '@/hooks/useVariable'
 const {searchValue,placeholderValue,searchDisabled}=useVariable()
 import useEventClick from "@/hooks/useEventClick";
 const {onSearchClick}=useEventClick()
+import useSearch from "@/hooks/useSearch";
+const {getSearchDefault}=useSearch()
 import useHomeReQue from "@/hooks/useHomeReQue";
-const {bannerList,personalizedNewsong,mvFirstList}=useHomeReQue()
-const playCount=computed(()=>{
-	if(mvFirstList.value.length){
-		return mvFirstList.value.map(item=>numberFormat(item.playCount))
-	}
-	return `0`
+const {bannerList,personalizedNewsong,mvFirstList,personalized,artistList}=useHomeReQue()
+const playCount=computed(()=>getCountPlayCount(mvFirstList.value))
+const playCount1=computed(()=>getCountPlayCount(personalized.value))
+onMounted(async ()=>{
+	placeholderValue.value = await getSearchDefault()
 })
 </script>
 

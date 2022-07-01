@@ -31,3 +31,9 @@ export const getFirstMv= params =>request({
     url:'/mv/first',
     params
 })
+
+//歌手榜
+export const getToplistArtist= params =>request({
+    url:'/toplist/artist',
+    params
+})
