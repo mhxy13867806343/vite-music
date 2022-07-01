@@ -20,3 +20,14 @@ export const getCountries = params =>request({
     url:'/countries/code/list',
     params
 })
+
+//推荐新音乐
+export const getPersonalizedNewsong = params =>request({
+    url:'/personalized/newsong',
+    params
+})
+//最新 mv
+export const getFirstMv= params =>request({
+    url:'/mv/first',
+    params
+})

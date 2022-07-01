@@ -3,8 +3,8 @@
 			left-text="手机号登录"
 			left-arrow
 			fixed placeholder
-			:z-index="11111111"
-			@click-left="$router.back()"
+			:z-index="100"
+			@click-left="$router.push('/home')"
 	/>
 <div class="mt-11">
 	<van-cell-group inset>
