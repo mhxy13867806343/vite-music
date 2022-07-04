@@ -3,7 +3,7 @@
 			left-arrow
 			fixed placeholder
 			:z-index="100"
-			@click-left="$router.push('/home')"
+			@click-left="$router.back()"
 	>
 		<template #title>
 			<van-search v-model="searchValue"

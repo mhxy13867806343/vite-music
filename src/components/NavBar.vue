@@ -9,6 +9,7 @@
 		</template>
 		<template #right>
 			<van-icon name="icon-right" size="18" />
+			<slot name="icon-right"></slot>
 		</template>
 	</van-nav-bar>
 	<left-popup :show="popLeftShow" @click-overlay="popLeftShow=false">
