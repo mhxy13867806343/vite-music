@@ -20,7 +20,7 @@ export const useTestStore  = defineStore('main',{
     actions:{
         //保存国家码列表
         saveCountrycode(list){
-            this.countrycode = list ||[]
+            this.countrycode.push()
             saveUser('countrycode',list)
         },
         //保存基本信息

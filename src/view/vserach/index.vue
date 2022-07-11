@@ -40,11 +40,10 @@
 				<h3>历史搜索</h3>
 				<span @click="onRemoveAll"><van-icon name="delete" class="icon" /></span>
 			</div>
-			<ul>
+			<ul class="flex flex-wrap	">
 				<li v-for="(k,v) in historyList" :key="k.score" class="flex flex-between flex-items"
 				>
 					<span @click="onShowdetai(k)">{{k.searchWord}}</span>
-					<span  @click="onRemoveDel(k,v)"><van-icon name="cross" class="icon" /></span>
 				</li>
 			</ul>
 		</div>
@@ -52,6 +51,7 @@
 			<h3>热搜列表</h3>
 		<ul>
 			<li v-for="(k,v) in searchHot" :key="v" class="flex flex-between flex-items"
+					@click="onSearchHot(k)"
 			>
 				<span>{{k.first}}</span>
 			</li>
@@ -61,6 +61,7 @@
 </template>
 
 <script setup>
+import { Dialog,Notify } from 'vant';
 import useVariable from '@/hooks/useVariable'
 const {searchValue,placeholderValue,searchDisabled}=useVariable()
 import {useRoute} from 'vue-router'
@@ -75,7 +76,13 @@ const route=useRoute()
 import { storeToRefs } from "pinia";
 import { useTestStore } from "@/store";
 const testStore = useTestStore();
+import storage from 'good-storage'
+const SEARCH_KEY = '__search__'
 onMounted(()=>{
+	const __search__=storage.get(SEARCH_KEY)
+	if(__search__?.length){
+		historyList.value=__search__
+	}
 	if(route.query.search){
 		placeholderValue.value=route.query.search
 	}
@@ -83,6 +90,7 @@ onMounted(()=>{
 	getSearchHot()
 
 })
+//展示的数据
 let showdetailListCom = computed({
 	get(){
 		if(isMoreData.value){
@@ -112,9 +120,38 @@ const onClickButton=(vale)=>{
 }
 //点某那一项展示
 const onShowdetai = item =>{
-	testStore.saveSearchList(item)
-	searchValue.value = item.searchWord
-	historyList.value.push(item)
+
+	if(!historyList.value.includes(item)){
+		historyList.value.unshift(item)
+	}else{
+		const index=historyList.value.indexOf(item)
+		historyList.value.splice(index,1)
+		historyList.value.unshift(item)
+	}
+	storage.set(SEARCH_KEY, historyList.value)
+	searchValue.value=item.searchWord
+}
+//清空数据
+const onRemoveAll=()=>{
+	Dialog.confirm({
+		title: '删除提示',
+		message:
+				'是否要删除搜索历史记录?',
+	})
+			.then(() => {
+				// on confirm
+				storage.remove(SEARCH_KEY)
+				historyList.value=[]
+				Notify({ type: 'success', message: '清空成功' });
+			})
+			.catch(() => {
+				// on cancel
+			});
+}
+//热搜列表
+const onSearchHot=item=>{
+	console.log(item)
+	searchValue.value=item.first
 }
 </script>
 
@@ -135,6 +172,11 @@ const onShowdetai = item =>{
 	}
 	.index{
 		padding-right:10px
+	}
+}
+.histroy{
+	li{
+		padding: 5px;
 	}
 }
 .hot-more{
