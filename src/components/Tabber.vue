@@ -1,6 +1,9 @@
 <template>
 	<div class="container" :style="{paddingBottom:(scrollHeight+10)+'px'}">
-		<router-view :key="$route.fullPath"/>
+		<keep-alive>
+			<router-view :key="$route.fullPath" v-if="$route.meta.isDataAlive"/>
+		</keep-alive>
+		<router-view :key="$route.fullPath" v-if="!$route.meta.isDataAlive"/>
 	</div>
 	<van-tabbar v-model="active" @change="tabChange" >
 		<van-tabbar-item v-for="(item,index) in tabList" :key="index">

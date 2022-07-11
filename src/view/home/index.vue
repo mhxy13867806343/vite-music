@@ -39,7 +39,7 @@
 		<div class="cell-group cell-group-just p-1.5">
 			<div class="flex items-center justify-between	">
 				<div class="text-2xl font-extrabold">歌手榜</div>
-				<div class="text-base">更多 <span class="icon-cross"></span></div>
+				<div class="text-base" @click="$router.push('/topArtist')">更多 <span class="icon-cross"></span></div>
 			</div>
 			<ul class="gnewsong flex a-scroll">
 				<li class="mvFirstList text-center" v-for="(item,index) in artistList" :key="index">

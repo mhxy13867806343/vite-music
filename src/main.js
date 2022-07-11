@@ -14,7 +14,9 @@ import NutUI from "@nutui/nutui";
 import "@nutui/nutui/dist/style.css";
 import '@/assets/tailwind.css'
 import {globalApps} from './utils/app'
+import Vue3TouchEvents from "vue3-touch-events";
+
 const app  = createApp(App)
-app.use(createPinia()).use(NutUI);
+app.use(createPinia()).use(NutUI).use(Vue3TouchEvents)
 globalApps(app)
 app.use(router).mount('#root')

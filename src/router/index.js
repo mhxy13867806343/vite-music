@@ -23,6 +23,20 @@ const routes = [
     {path:'/login',component:()=>import("../view/login/index.vue")},
     {path:'/cpwd',component:()=>import("../view/changePassword/index.vue")},
     {path:'/countries',component:()=>import("../view/countries/index.vue")},
+    {
+        path:'/topArtist',component:()=>import("../view/topArtist/index.vue"),
+        meta:{
+            isDataAlive: true,
+        }
+
+    },
+    {
+        path:'/artistList',component:()=>import("../view/artistList/index.vue"),
+        meta:{
+            isDataAlive: true,
+        }
+
+    },
 ];
 
 const router = createRouter({
