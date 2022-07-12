@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1517569",
+      "name": "点点",
+      "font_class": "diandian",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "24218971",
+      "name": "左箭头,指向左箭头",
+      "font_class": "a-zuojiantouzhixiangzuojiantou",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
       "icon_id": "1164942",
       "name": "向下箭头_实心",
       "font_class": "xiangxiajiantoushixin",

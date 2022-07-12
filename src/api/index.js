@@ -42,3 +42,18 @@ export const getArtistList= params =>request({
     url:'/artist/list',
     params
 })
+//获取歌手描述
+export const getArtistDesc= params =>request({
+    url:'/artist/desc',
+    params
+})
+//获取歌手详情
+export const getArtistDetail= params =>request({
+    url:'/artist/detail',
+    params
+})
+//获取歌手单曲
+export const getArtists= params =>request({
+    url:'/artists',
+    params
+})

@@ -42,7 +42,9 @@
 				<div class="text-base" @click="$router.push('/topArtist')">更多 <span class="icon-cross"></span></div>
 			</div>
 			<ul class="gnewsong flex a-scroll">
-				<li class="mvFirstList text-center" v-for="(item,index) in artistList" :key="index">
+				<li class="mvFirstList text-center" v-for="(item,index) in artistList" :key="index"
+						@click="$router.push(`/singerDetails?id=${item.id}`)"
+				>
 					<div class="name-center-mv">
 						<div class="relative mv-center">
 							<img :src="item.picUrl"  class="new-cover">
