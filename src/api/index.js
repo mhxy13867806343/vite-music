@@ -37,3 +37,8 @@ export const getToplistArtist= params =>request({
     url:'/toplist/artist',
     params
 })
+//歌手分类列表
+export const getArtistList= params =>request({
+    url:'/artist/list',
+    params
+})

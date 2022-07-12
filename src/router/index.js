@@ -37,6 +37,9 @@ const routes = [
         }
 
     },
+    {
+        path:'/singerDetails',component:()=>import("../view/singerDetails/index.vue"),
+    },
 ];
 
 const router = createRouter({

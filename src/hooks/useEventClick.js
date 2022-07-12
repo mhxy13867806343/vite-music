@@ -38,8 +38,13 @@ export default function (){
             }, 1000)
         }
     }
+    //关注或者取消
+    const onToggle=item=>{
+        console.log(item)
+    }
     return {
         sendBtn60,
-        onSearchClick
+        onSearchClick,
+        onToggle
     }
 }
